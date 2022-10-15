@@ -1,4 +1,12 @@
-def main():
-    print("First commit")
+import sys
+from PyQt5 import QtWidgets
+from src.Windows.MainWindow import Ui_MainWindow
 
-main()
+
+if __name__ == "__main__":
+    app = QtWidgets.QApplication(sys.argv)
+    MainWindow = QtWidgets.QMainWindow()
+    ui = Ui_MainWindow()
+    ui.setupUi(MainWindow)
+    MainWindow.show()
+    sys.exit(app.exec_())

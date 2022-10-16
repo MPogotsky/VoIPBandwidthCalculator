@@ -8,7 +8,7 @@ class Ui_Template(object):
         pass
 
     def setup(self, name: str, dimensions: QtCore.QRect):
-        """Perform ui object setup"""
+        """Perform ui_template object setup"""
         pass
 
     def getFont(self):

@@ -1,9 +1,9 @@
 from PyQt5 import QtWidgets, QtCore
 
-from ..UiTemplates.RadioButton import Ui_RadioButton
-from ..UiTemplates.ComboBox import Ui_ComboBox
-from ..UiTemplates.Label import Ui_Label
-from ..UiTemplates.InputBox import Ui_InputBox
+from src.Ui.Widgets.RadioButton import Ui_RadioButton
+from src.Ui.Widgets.ComboBox import Ui_ComboBox
+from src.Ui.Widgets.Label import Ui_Label
+from src.Ui.Widgets.InputBox import Ui_InputBox
 
 
 class Ui_GroupBoxManager(object):

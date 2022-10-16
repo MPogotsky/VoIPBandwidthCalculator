@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtWidgets
-from ..UiTemplates.GroupBox import Ui_GroupBox
-from ..UiManager.GroupBoxManager import Ui_GroupBoxManager
+from src.Ui.Widgets.GroupBox import Ui_GroupBox
+from src.Ui.Managers.GroupBoxManager import Ui_GroupBoxManager
 
 class Ui_MainWindow(object):
     def __init__(self):

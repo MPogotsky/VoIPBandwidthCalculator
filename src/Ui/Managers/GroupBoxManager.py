@@ -48,7 +48,7 @@ class Ui_GroupBoxManager(object):
         self.radioButton_IP = self.radioButton.setup("IP", QtCore.QRect(200, 190, 131, 31))
 
         self.radioButton_link = self.radioButton.setup("Link", QtCore.QRect(200, 230, 151, 31))
-        self.comboBox_link_headers = self.comboBox.setup("LinkHeadersComboBox", QtCore.QRect(360, 230, 151, 31))
+        self.comboBox_link_headers = self.comboBox.setup("LinkHeadersComboBox", QtCore.QRect(360, 230, 180, 31))
 
         self.inputBox_for_channels = self.inputBox.setup("InputForChannels", QtCore.QRect(650, 280, 111, 31))
 

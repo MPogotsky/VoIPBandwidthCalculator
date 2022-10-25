@@ -1,11 +1,24 @@
 from PyQt5 import QtCore, QtWidgets
 from .ObjTemplate import Ui_Template
 
+fillings = {
+    "PayloadComboBox": ["G.722.1", "G.723.1", "iLBC"],
+    "RTPTypesComboBox": ["RTP", "cRTP", "cRTP w/UDP"],
+    "LinkHeadersComboBox": ["ethernet 802.3", "PPP"]
+}
 
 class Ui_ComboBox(Ui_Template):
     def setup(self, name: str, dimensions: QtCore.QRect):
-        _comboBox = QtWidgets.QComboBox(self._group_box)
-        _comboBox.setGeometry(dimensions)
-        _comboBox.setObjectName(name)
+        self.comboBox = QtWidgets.QComboBox(self._group_box)
+        self.comboBox.setGeometry(dimensions)
+        self.comboBox.setObjectName(name)
+        self.comboBox.setFont(self.getFont())
 
-        return _comboBox
+        self._fillWithItems()
+
+        return self.comboBox
+
+    def _fillWithItems(self):
+        filling = fillings[self.comboBox.objectName()]
+        for item in filling:
+            self.comboBox.addItem(item)

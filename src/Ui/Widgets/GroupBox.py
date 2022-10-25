@@ -1,7 +1,7 @@
 from PyQt5 import QtCore, QtWidgets
 
 
-class Ui_GroupBox:
+class Ui_GroupBox():
     def setup(self, name: str, dimensions: QtCore.QRect, widget: QtWidgets.QWidget):
         group_box = QtWidgets.QGroupBox(widget)
         group_box.setGeometry(dimensions)

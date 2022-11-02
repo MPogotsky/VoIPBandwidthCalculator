@@ -1,61 +1,77 @@
 from .CodecTemplate import Codec
-from .CodecSets import CodecSets
 
 
 class VoIP_Calculator(object):
-    def __init__(self, headers: int, codec: Codec, N: int):
-        self.headers = headers
-        self.codec_bit_rate = codec.bit_rate
-        self.codec_sample_size = codec.sample_size
-        self.codec_sample_interval = codec.sample_interval
-        self.n = N
+    def __init__(self, headers: int, codec: Codec):
+        self.__headers = headers
+        self.__codec = codec
 
-        self._packet_rate = self._calculate_packet_rate()
-        self._bandwidth = self._calculate_bandwidth()
+        self.__voice_payload_size = self.__calculate_voice_payload_size()
+        self.__packet_rate = self.__calculate_packet_rate()
+        self.__bandwidth = self.__calculate_bandwidth()
 
-    def _voice_payload_size(self) -> float:
+    def __calculate_voice_payload_size(self) -> float:
         """
-        Count voice payload size that represents the number of bytes
-        that are filled into a packet.
-        The voice payload size must be a multiple of the codec sample size.
-        :return: voice payload size in Bytes
+        Get voice payload size that represents the number of bytes
+        that this are captured by the Digital Signal Processor
+        :return: voice payload size in bits
         """
-        return (self.n * self.codec_sample_interval * self.codec_bit_rate) / 8
+        voice_payload_size = (self.__codec.bit_rate * 1000) * (self.__codec.sample_interval * 10 ** -3)
+        return round(voice_payload_size, 1)
 
-    def _total_packet_size(self) -> float:
-        """
-        Count total packet size that consists of bytes of
-        protocol header together with voice payload.
-        :return: packet size in Bytes
-        """
-        return self.headers + self._voice_payload_size()
-
-    def _calculate_packet_rate(self) -> float:
+    def __calculate_packet_rate(self) -> float:
         """
         Packet rate represents the number of packets that need to be
         transmitted every second in order to deliver the codec bit rate.
         :return: packet rate in pps
         """
-        packet_rate = (self.codec_bit_rate * 1000) / (self._voice_payload_size() * 8)
+        bit_rate_bps = self.__codec.bit_rate * 1000
+        packet_rate = bit_rate_bps / self.__voice_payload_size
         return round(packet_rate, 1)
 
-    def _calculate_bandwidth(self) -> float:
+    def __calculate_total_packet_size(self) -> float:
+        """
+        Count total packet size that consists of bytes of
+        protocol header together with voice payload.
+        :return: packet size in bits
+        """
+        return self.__headers + self.__voice_payload_size
+
+    def __calculate_bandwidth(self) -> float:
         """
         Calculate VoIP bandwidth.
         :return: bandwidth in kbps
         """
-        bandwidth = (self._total_packet_size() * self._packet_rate * 8) / 1000
+        self._total_packet_size = self.__calculate_total_packet_size()
+        bandwidth = (self._total_packet_size * self.__packet_rate * 8) / 1000
         return round(bandwidth, 1)
 
-    def get_bandwidth(self) -> str:
-        return str(self._bandwidth) + "kbps"
+    def get_voice_payload_size(self) -> float:
+        """
+        :return: voice payload size in bits as float
+        """
+        return self.__voice_payload_size
 
-    def get_pps(self) -> str:
-        return str(self._packet_rate) + "pps"
+    def get_bandwidth(self) -> float:
+        """
+        :return: bandwidth in kbps as float
+        """
+        return self.__bandwidth
 
+    def get_bandwidth_as_string(self) -> str:
+        """
+        :return: bandwidth in kbps as str
+        """
+        return str(self.__bandwidth) + "kbps"
 
-def calculate():
-    headers = 0
-    calculator = VoIP_Calculator(headers, CodecSets["G.723.1 5.3kbps"], 5)
-    print("PPS Average: ", calculator.get_pps())
-    print("Bandwidth Average: ", calculator.get_bandwidth())
+    def get_pps(self) -> float:
+        """
+        :return: packet rate in pps as float
+        """
+        return self.__packet_rate
+
+    def get_pps_as_string(self):
+        """
+        :return: packet rate in pps as string
+        """
+        return str(self.__packet_rate) + "pps"

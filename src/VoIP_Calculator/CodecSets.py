@@ -1,6 +1,15 @@
-from .CodecTemplate import Codec
+ITU_T_and_IETF_Defined_Codec_Interval_Standards = {
+    # ITU-T standard
+    "G.711":    0.125,
+    "G.726":    0.125,
+    "G.728":    0.625,
+    "G.729":    10,
+    "G.723.1":  30,
+    # IETF standard
+    "iLBC":     20
+}
 
+# TODO: Add codecs to use them in UI
 CodecSets = {
-    # "<codec_name> <bit_rate>": Codec(bit_rate [kbps], sample_size [Bytes])
-    "G.723.1 5.3kbps": Codec(5.3, 20, 30)
+    None
 }

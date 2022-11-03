@@ -4,7 +4,7 @@ from .Font import Ui_Font
 
 class Ui_Template(object):
     def __init__(self, group_box: QtWidgets.QGroupBox):
-        self._group_box = group_box
+        self.group_box = group_box
         pass
 
     def setup(self, name: str, dimensions: QtCore.QRect):

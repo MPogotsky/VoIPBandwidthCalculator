@@ -2,9 +2,9 @@ from PyQt5 import QtGui
 
 
 class Ui_Font():
-    def setup(self, type="Arial", size=18):
+    def setup(self, font_name="Arial", size=18):
         font = QtGui.QFont()
-        font.setFamily(type)
+        font.setFamily(font_name)
         font.setPointSize(size)
 
         return font

@@ -8,8 +8,12 @@ fillings = {
 }
 
 class Ui_ComboBox(Ui_Template):
+    def __init__(self, group_box: QtWidgets.QGroupBox):
+        super().__init__(group_box)
+        self.comboBox = None
+
     def setup(self, name: str, dimensions: QtCore.QRect):
-        self.comboBox = QtWidgets.QComboBox(self._group_box)
+        self.comboBox = QtWidgets.QComboBox(self.group_box)
         self.comboBox.setGeometry(dimensions)
         self.comboBox.setObjectName(name)
         self.comboBox.setFont(self.getFont())

@@ -4,6 +4,8 @@ from src.Ui.Widgets.MenuBar import Ui_MenuBar, Ui_SubMenu
 
 class Ui_MenuManager(object):
     def __init__(self, Window):
+        self.menu_file = None
+        self.menu_bar = None
         self._Window = Window
         self.ui_menuBar = Ui_MenuBar(self._Window)
         self.ui_subMenu = Ui_SubMenu()

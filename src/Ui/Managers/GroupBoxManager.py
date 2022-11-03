@@ -9,17 +9,17 @@ from src.Ui.Widgets.GroupBox import Ui_GroupBox
 
 class Ui_GroupBoxManager(object):
     def __init__(self, Window):
-        self._Window = Window
+        self.__Window = Window
         self.groupBox = Ui_GroupBox()
-        self.centralWidget = QtWidgets.QWidget(self._Window)
+        self.centralWidget = QtWidgets.QWidget(self.__Window)
         self.centralWidget.setObjectName("centralwidget")
-        self._initDependencies()
+        self.__initDependencies()
 
     def setupUi(self):
-        self._setupDependencies()
-        self._raiseObjects()
+        self.__setupDependencies()
+        self.__raiseObjects()
 
-    def _initDependencies(self):
+    def __initDependencies(self):
         self.groupBox_parameters = self.groupBox.setup("Parameters", QtCore.QRect(10, 10, 1111, 331),
                                                        self.centralWidget)
         self.radioButton = Ui_RadioButton(self.groupBox_parameters)
@@ -27,8 +27,8 @@ class Ui_GroupBoxManager(object):
         self.label = Ui_Label(self.groupBox_parameters)
         self.inputBox = Ui_InputBox(self.groupBox_parameters)
 
-    def _setupDependencies(self):
-        self._Window.setCentralWidget(self.centralWidget)
+    def __setupDependencies(self):
+        self.__Window.setCentralWidget(self.centralWidget)
 
         self.radioButton_payload = self.radioButton.setup("Payload", QtCore.QRect(200, 20, 131, 31))
         self.comboBox_payload = self.comboBox.setup("PayloadComboBox", QtCore.QRect(340, 21, 151, 31))
@@ -52,7 +52,7 @@ class Ui_GroupBoxManager(object):
 
         self.inputBox_for_channels = self.inputBox.setup("InputForChannels", QtCore.QRect(650, 280, 111, 31))
 
-    def _raiseObjects(self):
+    def __raiseObjects(self):
         self.radioButton_payload.raise_()
         self.comboBox_payload.raise_()
 

@@ -4,6 +4,10 @@ from src.Ui.Managers.GroupBoxManager import Ui_GroupBoxManager
 from src.Ui.Managers.MenuManager import Ui_MenuManager
 
 class Ui_MainWindow(object):
+    def __init__(self):
+        self.ui_groupBoxManager = None
+        self.ui_menuManager = None
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1134, 755)

@@ -10,7 +10,7 @@ class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1134, 755)
+        # MainWindow.resize(1134, 755)
 
         self.ui_menuManager = Ui_MenuManager(MainWindow)
         self.ui_groupBoxManager = Ui_GroupBoxManager(MainWindow)

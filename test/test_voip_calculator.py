@@ -58,5 +58,3 @@ def test_codec_pps_calculations() -> None:
         calculator = VoIP_Calculator(headers, codec)
 
         assert (calculator.get_pps() == expected_pps)
-
-

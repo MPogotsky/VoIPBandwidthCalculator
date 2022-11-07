@@ -35,15 +35,15 @@ class VoIP_Calculator(object):
         protocol header together with voice payload.
         :return: packet size in bits
         """
-        return self.__headers + self.__voice_payload_size
+        return (self.__headers * 8) + self.__voice_payload_size
 
     def __calculate_bandwidth(self) -> float:
         """
         Calculate VoIP bandwidth.
         :return: bandwidth in kbps
         """
-        self._total_packet_size = self.__calculate_total_packet_size()
-        bandwidth = (self._total_packet_size * self.__packet_rate * 8) / 1000
+        total_packet_size = self.__calculate_total_packet_size()
+        bandwidth = (total_packet_size * self.__packet_rate) / 1000
         return round(bandwidth, 1)
 
     def get_voice_payload_size(self) -> float:

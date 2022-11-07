@@ -1,0 +1,3 @@
+ProtocolHeaderSizesInBytes = {
+    "RTP": 12
+}

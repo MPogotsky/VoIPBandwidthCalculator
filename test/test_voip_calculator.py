@@ -41,7 +41,7 @@ def test_voice_payload_size_calculations_on_number_of_frames() -> None:
         assert (calculator.get_voice_payload_size() == expected_out)
 
 
-def test_codec_pps_calculations():
+def test_codec_pps_calculations() -> None:
     """
     Test checks how VoIP_Calculator calculates packet
     rate for several codecs with no additional headers

@@ -1,4 +1,4 @@
-from CodecSets import ITU_T_and_IETF_Defined_Codec_Interval_Standards
+from .CodecSets import ITU_T_and_IETF_Defined_Codec_Interval_Standards
 
 
 class Codec:

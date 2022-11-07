@@ -7,7 +7,7 @@ def test_codec_null_exception() -> None:
         codec = Codec("G.711 64kbps", 64)
 
 
-def test_codec_frames_per_packet_calculations():
+def test_codec_frames_per_packet_calculations() -> None:
     """
     Test checks how Codec calculates number of frames needed
     based on bit rate and sample interval.

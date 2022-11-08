@@ -12,8 +12,8 @@ def test_codec_frames_per_packet_calculations() -> None:
         Header(["RTP", "UDP"]):                           20,
         Header(["RTP", "UDP", "IPv4"]):                   40,
         Header(["RTP", "UDP", "IPv6"]):                   60,
-        Header(["RTP", "UDP", "IPv4", "ethernet 802.3"]): 54,
-        Header(["RTP", "UDP", "IPv6", "ethernet 802.3"]): 74
+        Header(["RTP", "UDP", "IPv4", "ethernet 802.3"]): 78,
+        Header(["RTP", "UDP", "IPv6", "ethernet 802.3"]): 98
     }
 
     for header_with_protocol_set, expected_out in headers_with_out_in_bytes.items():

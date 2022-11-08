@@ -1,6 +1,7 @@
 from .CodecTemplate import Codec
 from .HeaderTemplate import Header
 
+
 class VoIP_Calculator(object):
     def __init__(self, header: Header, codec: Codec):
         self.__header = header

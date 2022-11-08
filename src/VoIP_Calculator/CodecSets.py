@@ -1,5 +1,6 @@
 ITU_T_and_IETF_Defined_Codec_Interval_Standards = {
     # ITU-T standard
+    # Codec family: default interval
     "G.711":    0.125,
     "G.726":    0.125,
     "G.728":    0.625,

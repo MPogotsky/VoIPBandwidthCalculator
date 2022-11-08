@@ -1,9 +1,9 @@
 from .CodecTemplate import Codec
-
+from .HeaderTemplate import Header
 
 class VoIP_Calculator(object):
-    def __init__(self, headers: int, codec: Codec):
-        self.__headers = headers
+    def __init__(self, header: Header, codec: Codec):
+        self.__header = header
         self.__codec = codec
 
         self.__voice_payload_size = self.__calculate_voice_payload_size()
@@ -13,7 +13,7 @@ class VoIP_Calculator(object):
     def __calculate_voice_payload_size(self) -> float:
         """
         Get voice payload size that represents the number of bytes
-        that these are captured by the Digital Signal Processor
+        that are captured by the Digital Signal Processor
         :return: voice payload size in bits
         """
         voice_payload_size = (self.__codec.bit_rate * 1000) * (self.__codec.sample_interval * 10 ** -3)
@@ -35,7 +35,7 @@ class VoIP_Calculator(object):
         protocol header together with voice payload.
         :return: packet size in bits
         """
-        return (self.__headers * 8) + self.__voice_payload_size
+        return self.__header.total_size_bits + self.__voice_payload_size
 
     def __calculate_bandwidth(self) -> float:
         """
@@ -44,6 +44,7 @@ class VoIP_Calculator(object):
         """
         total_packet_size = self.__calculate_total_packet_size()
         bandwidth = (total_packet_size * self.__packet_rate) / 1000
+
         return round(bandwidth, 1)
 
     def get_voice_payload_size(self) -> float:

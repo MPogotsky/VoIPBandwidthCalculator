@@ -1,6 +1,7 @@
 import pytest
 from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
 from src.VoIP_Calculator.CodecTemplate import Codec
+from src.VoIP_Calculator.HeaderTemplate import Header
 
 
 def test_voice_payload_size_calculations_on_sample_interval() -> None:
@@ -15,11 +16,11 @@ def test_voice_payload_size_calculations_on_sample_interval() -> None:
         Codec("G.729 8kbps", 8, sample_interval=20.0):        160
     }
 
-    for codec, expected_out in codec_sets_with_out.items():
-        headers = 0
+    for codec, expected_payload_size in codec_sets_with_out.items():
+        headers = Header()
         calculator = VoIP_Calculator(headers, codec)
 
-        assert (calculator.get_voice_payload_size() == expected_out)
+        assert (calculator.get_voice_payload_size() == expected_payload_size)
 
 
 def test_voice_payload_size_calculations_on_number_of_frames() -> None:
@@ -34,11 +35,11 @@ def test_voice_payload_size_calculations_on_number_of_frames() -> None:
         Codec("G.729 8kbps",   8, frames=2):         160
     }
 
-    for codec, expected_out in codec_sets_with_out.items():
-        headers = 0
+    for codec, expected_payload_size in codec_sets_with_out.items():
+        headers = Header()
         calculator = VoIP_Calculator(headers, codec)
 
-        assert (calculator.get_voice_payload_size() == expected_out)
+        assert (calculator.get_voice_payload_size() == expected_payload_size)
 
 
 def test_codec_pps_calculations() -> None:
@@ -54,7 +55,7 @@ def test_codec_pps_calculations() -> None:
     }
 
     for codec, expected_pps in codec_sets_with_pps.items():
-        headers = 0
+        headers = Header()
         calculator = VoIP_Calculator(headers, codec)
 
         assert (calculator.get_pps() == expected_pps)

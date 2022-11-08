@@ -22,6 +22,7 @@ class Codec:
         else:
             self.sample_interval = sample_interval
             self.frame_number = self.__calculate_number_of_frames()
+            print("Frames: ", self.frame_number)
 
     def __calculate_number_of_frames(self) -> int:
         """

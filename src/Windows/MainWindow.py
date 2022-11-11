@@ -1,5 +1,4 @@
-from PyQt5 import QtCore, QtWidgets
-from src.Ui.Widgets.GroupBox import Ui_GroupBox
+from PyQt5 import QtCore
 from src.Ui.Managers.GroupBoxManager import Ui_GroupBoxManager
 from src.Ui.Managers.MenuManager import Ui_MenuManager
 

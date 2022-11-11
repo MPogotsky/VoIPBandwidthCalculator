@@ -4,7 +4,8 @@ from .ObjTemplate import Ui_Template
 fillings = {
     "PayloadComboBox": ["G.722.1", "G.723.1", "iLBC"],
     "RTPTypesComboBox": ["RTP", "cRTP", "cRTP w/UDP"],
-    "LinkHeadersComboBox": ["ethernet 802.3", "PPP"]
+    "LinkHeadersComboBox": ["ethernet 802.3", "PPP"],
+    "IPVersionComboBox": ["IPv4", "IPv6"]
 }
 
 class Ui_ComboBox(Ui_Template):
@@ -13,7 +14,7 @@ class Ui_ComboBox(Ui_Template):
         self.comboBox = None
 
     def setup(self, name: str, dimensions: QtCore.QSize):
-        self.comboBox = QtWidgets.QComboBox(self.group_box)
+        self.comboBox = QtWidgets.QComboBox(self.widget)
         self.comboBox.setMinimumSize(dimensions)
         self.comboBox.setObjectName(name)
         self.comboBox.setFont(self.getFont())

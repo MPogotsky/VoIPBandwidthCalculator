@@ -3,8 +3,8 @@ from .Font import Ui_Font
 
 
 class Ui_Template(object):
-    def __init__(self, group_box: QtWidgets):
-        self.group_box = group_box
+    def __init__(self, widget: QtWidgets):
+        self.widget = widget
         pass
 
     def setup(self, name: str, dimensions: QtCore.QSize):

@@ -4,7 +4,7 @@ from .ObjTemplate import Ui_Template
 
 class Ui_InputBox(Ui_Template):
     def setup(self, name: str, dimensions: QtCore.QSize):
-        input_box = QtWidgets.QLineEdit(self.group_box)
+        input_box = QtWidgets.QLineEdit(self.widget)
         input_box.setMinimumSize(dimensions)
         input_box.setObjectName(name)
         input_box.setFont(self.getFont())

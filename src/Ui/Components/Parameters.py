@@ -14,8 +14,8 @@ class Parameters(object):
     def __init__(self, Window):
         self.__Window = Window
         self.GroupBox = Ui_GroupBox()
-        self.CentralWidget = QtWidgets.QWidget(self.__Window)
-        self.CentralWidget.setObjectName("centralwidget")
+        self.central_widget = QtWidgets.QWidget(self.__Window)
+        self.central_widget.setObjectName("centralwidget")
         self.__initDependencies()
 
     def setupUi(self):
@@ -23,7 +23,7 @@ class Parameters(object):
         self.__raiseObjects()
 
     def __initDependencies(self):
-        self.main_layout = Ui_VerticalLayout(self.CentralWidget,
+        self.main_layout = Ui_VerticalLayout(self.central_widget,
                                              QtCore.QRect(9, 9, 1190, 750),
                                              "MainLayout")
         self.group_box_parameters = self.GroupBox.setup("Parameters",
@@ -32,7 +32,7 @@ class Parameters(object):
         self.button_group = QtWidgets.QButtonGroup()
 
     def __setupDependencies(self):
-        self.__Window.setCentralWidget(self.CentralWidget)
+        self.__Window.setCentralWidget(self.central_widget)
 
         self.__setupPayload()
         self.__setupRTP()

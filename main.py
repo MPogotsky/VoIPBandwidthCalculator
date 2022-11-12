@@ -7,7 +7,7 @@ if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     app = QtWidgets.QApplication(sys.argv)
     MainWindow = QtWidgets.QMainWindow()
-    MainWindow.setFixedSize(1200, 800)
+    MainWindow.setFixedSize(1180, 800)
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
     MainWindow.show()

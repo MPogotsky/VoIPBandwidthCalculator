@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets, QtCore
 from src.Ui.Widgets.MenuBar import Ui_MenuBar, Ui_SubMenu
 
 
-class Ui_MenuManager(object):
+class Menu(object):
     def __init__(self, Window):
         self.menu_file = None
         self.menu_bar = None

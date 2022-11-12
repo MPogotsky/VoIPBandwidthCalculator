@@ -10,7 +10,7 @@ from src.Ui.Layouts.Grid import Ui_GridLayout
 from src.Ui.Layouts.Horizontal import Ui_HorizontalLayout
 
 
-class Ui_GroupBoxManager(object):
+class Parameters(object):
     def __init__(self, Window):
         self.__Window = Window
         self.GroupBox = Ui_GroupBox()

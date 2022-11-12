@@ -1,21 +1,20 @@
 from PyQt5 import QtCore
-from src.Ui.Managers.GroupBoxManager import Ui_GroupBoxManager
-from src.Ui.Managers.MenuManager import Ui_MenuManager
+from src.Ui.Components.Parameters import Parameters
+from src.Ui.Components.Menu import Menu
 
 class Ui_MainWindow(object):
     def __init__(self):
-        self.ui_groupBoxManager = None
-        self.ui_menuManager = None
+        self.parameters = None
+        self.upper_menu = None
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        # MainWindow.resize(1134, 755)
 
-        self.ui_menuManager = Ui_MenuManager(MainWindow)
-        self.ui_groupBoxManager = Ui_GroupBoxManager(MainWindow)
+        self.upper_menu = Menu(MainWindow)
+        self.parameters = Parameters(MainWindow)
 
-        self.ui_menuManager.setupUi()
-        self.ui_groupBoxManager.setupUi()
+        self.upper_menu.setupUi()
+        self.parameters.setupUi()
 
         self.retranslateUi(MainWindow)
 
@@ -25,5 +24,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
-        self.ui_groupBoxManager.retranslateUi(_translate)
-        self.ui_menuManager.retranslateUi(_translate)
+        self.parameters.retranslateUi(_translate)
+        self.upper_menu.retranslateUi(_translate)

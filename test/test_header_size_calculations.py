@@ -1,5 +1,5 @@
 import pytest
-from src.VoIP_Calculator.HeaderTemplate import Header
+from src.VoIP_Calculator.Header import Header
 
 
 def test_codec_frames_per_packet_calculations() -> None:

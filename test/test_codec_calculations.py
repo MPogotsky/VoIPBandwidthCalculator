@@ -1,5 +1,5 @@
 import pytest
-from src.VoIP_Calculator.CodecTemplate import Codec
+from src.VoIP_Calculator.Codec import Codec
 
 
 def test_codec_null_exception() -> None:

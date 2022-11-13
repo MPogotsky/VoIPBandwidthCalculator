@@ -25,8 +25,6 @@ class Codec:
     def __get_default_bitrate(self) -> int:
         for codec_family, standard_data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
             if codec_family in self.name:
-                print("Codec: ", codec_family)
-                print("Bit rate: ", standard_data[0])
                 return standard_data[0]
 
     def __calculate_number_of_frames(self) -> int:

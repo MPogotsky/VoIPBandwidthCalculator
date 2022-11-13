@@ -1,5 +1,5 @@
-from .CodecTemplate import Codec
-from .HeaderTemplate import Header
+from .Codec import Codec
+from .Header import Header
 
 
 class VoIP_Calculator(object):

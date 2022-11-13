@@ -1,7 +1,7 @@
 import pytest
 from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
-from src.VoIP_Calculator.CodecTemplate import Codec
-from src.VoIP_Calculator.HeaderTemplate import Header
+from src.VoIP_Calculator.Codec import Codec
+from src.VoIP_Calculator.Header import Header
 
 
 def test_voip_calculator_bandwidth_calculations_for_RTP_protocol() -> None:

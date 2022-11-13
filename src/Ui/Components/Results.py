@@ -10,10 +10,11 @@ class Results(object):
     def __init__(self, Window: QtWidgets.QMainWindow, widget: QtWidgets.QWidget):
         self.__Window = Window
         self.__central_widget = widget
-        self.GroupBox = Ui_GroupBox()
-        self.group_box = self.GroupBox.setup("Result",
-                                             QtCore.QRect(9, 420, 1160, 340),
-                                             self.__central_widget)
+
+        GroupBox = Ui_GroupBox()
+        self.__group_box = GroupBox.setup("Result",
+                                          QtCore.QRect(9, 420, 1160, 340),
+                                          self.__central_widget)
         self.__setupDependencies()
 
     def __setupDependencies(self):
@@ -22,7 +23,7 @@ class Results(object):
         self.__retranslateUi()
 
     def __setupResultsBandwidth(self):
-        bandwidth_horizontal = Ui_HorizontalLayout(self.group_box,
+        bandwidth_horizontal = Ui_HorizontalLayout(self.__group_box,
                                                    QtCore.QRect(350, 100, 400, 50),
                                                    "ResultLayout")
 
@@ -44,7 +45,7 @@ class Results(object):
         bandwidth_horizontal.layout.addWidget(self.label_6)
 
     def __setupResultsPPS(self):
-        packet_rate_horizontal = Ui_HorizontalLayout(self.group_box,
+        packet_rate_horizontal = Ui_HorizontalLayout(self.__group_box,
                                                      QtCore.QRect(350, 200, 400, 50),
                                                      "ResultLayout")
 
@@ -66,7 +67,7 @@ class Results(object):
 
     def __retranslateUi(self):
         translate = QtCore.QCoreApplication.translate
-        self.group_box.setTitle(translate("MainWindow", "Result"))
+        self.__group_box.setTitle(translate("MainWindow", "Result"))
         self.label_5.setText(translate("MainWindow", "Bandwidth:"))
         self.label_6.setText(translate("MainWindow", "kbps"))
         self.label_7.setText(translate("MainWindow", "Packet rate:"))

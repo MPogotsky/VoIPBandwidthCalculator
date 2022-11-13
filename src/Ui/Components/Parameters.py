@@ -15,11 +15,11 @@ class Parameters(object):
         self.__Window = Window
         self.__central_widget = widget
         self.__button_group = QtWidgets.QButtonGroup()
-        self.GroupBox = Ui_GroupBox()
 
-        self.group_box = self.GroupBox.setup("Parameters",
-                                             QtCore.QRect(9, 9, 1160, 410),
-                                             self.__central_widget)
+        GroupBox = Ui_GroupBox()
+        self.__group_box = GroupBox.setup("Parameters",
+                                          QtCore.QRect(9, 9, 1160, 410),
+                                          self.__central_widget)
         self.__setupDependencies()
 
     def __setupDependencies(self):
@@ -33,7 +33,7 @@ class Parameters(object):
         self.__retranslateUi()
 
     def __setupPayload(self):
-        payload_grid = Ui_GridLayout(self.group_box,
+        payload_grid = Ui_GridLayout(self.__group_box,
                                      QtCore.QRect(40, 30, 1000, 100),
                                      "payloadLayout")
         RadioButton = Ui_RadioButton(payload_grid.widget)
@@ -61,7 +61,7 @@ class Parameters(object):
         payload_grid.layout.addWidget(self.label_3, 1, 5, 1, 1)
 
     def __setupRTP(self):
-        RTP_horizontal = Ui_HorizontalLayout(self.group_box,
+        RTP_horizontal = Ui_HorizontalLayout(self.__group_box,
                                              QtCore.QRect(40, 130, 650, 50),
                                              "RTPLayout")
         RadioButton = Ui_RadioButton(RTP_horizontal.widget)
@@ -72,7 +72,7 @@ class Parameters(object):
         self.__button_group.addButton(self.radio_button_RTP)
 
     def __setupUDP(self):
-        UDP_horizontal = Ui_HorizontalLayout(self.group_box,
+        UDP_horizontal = Ui_HorizontalLayout(self.__group_box,
                                              QtCore.QRect(40, 180, 650, 50),
                                              "UDPLayout")
 
@@ -83,7 +83,7 @@ class Parameters(object):
         self.__button_group.addButton(self.radio_button_UDP)
 
     def __setupIP(self):
-        IP_horizontal = Ui_HorizontalLayout(self.group_box,
+        IP_horizontal = Ui_HorizontalLayout(self.__group_box,
                                             QtCore.QRect(40, 230, 650, 50),
                                             "IPLayout")
 
@@ -103,7 +103,7 @@ class Parameters(object):
         IP_horizontal.layout.addWidget(self.combo_box_IP_version)
 
     def __setupLink(self):
-        link_horizontal = Ui_HorizontalLayout(self.group_box,
+        link_horizontal = Ui_HorizontalLayout(self.__group_box,
                                               QtCore.QRect(40, 280, 700, 50),
                                               "LinkLayout")
         RadioButton = Ui_RadioButton(link_horizontal.widget)
@@ -114,7 +114,7 @@ class Parameters(object):
         self.__button_group.addButton(self.radio_button_link)
 
     def __setupInputForChannels(self):
-        channels_horizontal = Ui_HorizontalLayout(self.group_box,
+        channels_horizontal = Ui_HorizontalLayout(self.__group_box,
                                                   QtCore.QRect(300, 350, 650, 50),
                                                   "InputForChannelsLayout")
         InputBox = Ui_InputBox(channels_horizontal.widget)
@@ -132,7 +132,7 @@ class Parameters(object):
 
     def __retranslateUi(self):
         translate = QtCore.QCoreApplication.translate
-        self.group_box.setTitle(translate("MainWindow", "Parameters"))
+        self.__group_box.setTitle(translate("MainWindow", "Parameters"))
         self.radio_button_payload.setText(translate("MainWindow", "Payload is"))
         self.label_1.setText(translate("MainWindow", "with"))
         self.label_2.setText(translate("MainWindow", "ms"))

@@ -6,7 +6,6 @@ from src.Ui.Widgets.ComboBox import Ui_ComboBox
 from src.Ui.Widgets.GroupBox import Ui_GroupBox
 from src.Ui.Widgets.InputBox import Ui_InputBox
 from src.Ui.Widgets.Label import Ui_Label
-from src.Ui.Widgets.OutputBox import Ui_OutputBox
 from src.Ui.Widgets.RadioButton import Ui_RadioButton
 
 

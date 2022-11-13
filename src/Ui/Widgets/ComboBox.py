@@ -1,10 +1,9 @@
 from PyQt5 import QtCore, QtWidgets
 from .ObjTemplate import Ui_Template
 
+from src.VoIP_Calculator.CodecSets import ITU_T_and_IETF_Defined_Codec_Interval_Standards
 fillings = {
-    "PayloadComboBox": ["G.722.1", "G.723.1", "iLBC"],
-    "RTPTypesComboBox": ["RTP", "cRTP", "cRTP w/UDP"],
-    "LinkHeadersComboBox": ["ethernet 802.3", "PPP"],
+    "PayloadComboBox": list(ITU_T_and_IETF_Defined_Codec_Interval_Standards.keys()),
     "IPVersionComboBox": ["IPv4", "IPv6"]
 }
 

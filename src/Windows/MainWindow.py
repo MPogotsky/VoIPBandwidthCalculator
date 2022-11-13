@@ -1,6 +1,7 @@
 from PyQt5 import QtCore
-from src.Ui.Components.Parameters import Parameters
+from src.Ui.Components.GroupBoxManager import GroupBoxManager
 from src.Ui.Components.Menu import Menu
+
 
 class Ui_MainWindow(object):
     def __init__(self):
@@ -11,7 +12,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
 
         self.upper_menu = Menu(MainWindow)
-        self.parameters = Parameters(MainWindow)
+        self.parameters = GroupBoxManager(MainWindow)
 
         self.upper_menu.setupUi()
         self.parameters.setupUi()

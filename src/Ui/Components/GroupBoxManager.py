@@ -1,45 +1,47 @@
 from PyQt5 import QtWidgets, QtCore
 
+from src.Ui.Widgets.OutputBox import Ui_OutputBox
 from src.Ui.Widgets.RadioButton import Ui_RadioButton
 from src.Ui.Widgets.ComboBox import Ui_ComboBox
 from src.Ui.Widgets.Label import Ui_Label
 from src.Ui.Widgets.InputBox import Ui_InputBox
 from src.Ui.Widgets.GroupBox import Ui_GroupBox
-from src.Ui.Layouts.Vertical import Ui_VerticalLayout
 from src.Ui.Layouts.Grid import Ui_GridLayout
 from src.Ui.Layouts.Horizontal import Ui_HorizontalLayout
 
 
-class Parameters(object):
+class GroupBoxManager(object):
     def __init__(self, Window):
         self.__Window = Window
         self.GroupBox = Ui_GroupBox()
+        self.button_group = QtWidgets.QButtonGroup()
+
         self.central_widget = QtWidgets.QWidget(self.__Window)
         self.central_widget.setObjectName("centralwidget")
-        self.__initDependencies()
+
+        self.__Window.setCentralWidget(self.central_widget)
+
+        self.group_box_parameters = self.GroupBox.setup("Parameters",
+                                                        QtCore.QRect(9, 9, 1160, 410),
+                                                        self.central_widget)
+        self.group_box_result = self.GroupBox.setup("Result",
+                                                    QtCore.QRect(9, 420, 1160, 340),
+                                                    self.central_widget)
 
     def setupUi(self):
         self.__setupDependencies()
         self.__raiseObjects()
 
-    def __initDependencies(self):
-        self.main_layout = Ui_VerticalLayout(self.central_widget,
-                                             QtCore.QRect(9, 9, 1190, 750),
-                                             "MainLayout")
-        self.group_box_parameters = self.GroupBox.setup("Parameters",
-                                                        QtCore.QSize(1160, 410),
-                                                        self.main_layout.widget)
-        self.button_group = QtWidgets.QButtonGroup()
-
     def __setupDependencies(self):
-        self.__Window.setCentralWidget(self.central_widget)
-
         self.__setupPayload()
         self.__setupRTP()
         self.__setupUDP()
         self.__setupIP()
         self.__setupLink()
         self.__setupInputForChannels()
+
+        self.__setupResultsBandwidth()
+        self.__setupResultsPPS()
 
     def __setupPayload(self):
         payload_grid = Ui_GridLayout(self.group_box_parameters,
@@ -139,6 +141,44 @@ class Parameters(object):
         channels_horizontal.layout.setAlignment(QtCore.Qt.AlignLeft)
         channels_horizontal.layout.addWidget(self.input_box_for_channels)
 
+    def __setupResultsBandwidth(self):
+        bandwidth_horizontal = Ui_HorizontalLayout(self.group_box_result,
+                                                   QtCore.QRect(320, 40, 500, 31),
+                                                   "ResultLayout")
+
+        Label = Ui_Label(bandwidth_horizontal.widget)
+        OutputBox = Ui_OutputBox(bandwidth_horizontal.widget)
+
+        self.label_5 = Label.setup("label_5", QtCore.QSize(120, 31))
+        bandwidth_horizontal.layout.addWidget(self.label_5)
+        bandwidth_horizontal.layout.addSpacing(5)
+
+        self.output_for_bandwidth = OutputBox.setup("OutForBandwidth", QtCore.QSize(100, 31))
+        bandwidth_horizontal.layout.setAlignment(QtCore.Qt.AlignLeft)
+        bandwidth_horizontal.layout.addWidget(self.output_for_bandwidth)
+
+        self.label_6 = Label.setup("label_6", QtCore.QSize(60, 31))
+        bandwidth_horizontal.layout.addWidget(self.label_6)
+
+    def __setupResultsPPS(self):
+        packet_rate_horizontal = Ui_HorizontalLayout(self.group_box_result,
+                                                     QtCore.QRect(320, 80, 500, 31),
+                                                     "ResultLayout")
+
+        Label = Ui_Label(packet_rate_horizontal.widget)
+        OutputBox = Ui_OutputBox(packet_rate_horizontal.widget)
+
+        self.label_7 = Label.setup("label_7", QtCore.QSize(120, 31))
+        packet_rate_horizontal.layout.addWidget(self.label_7)
+        packet_rate_horizontal.layout.addSpacing(5)
+
+        self.output_for_bandwidth = OutputBox.setup("OutForBandwidth", QtCore.QSize(100, 31))
+        packet_rate_horizontal.layout.setAlignment(QtCore.Qt.AlignLeft)
+        packet_rate_horizontal.layout.addWidget(self.output_for_bandwidth)
+
+        self.label_8 = Label.setup("label_8", QtCore.QSize(60, 31))
+        packet_rate_horizontal.layout.addWidget(self.label_8)
+
     def __raiseObjects(self):
         self.radio_button_payload.raise_()
         self.combo_box_payload.raise_()
@@ -147,6 +187,10 @@ class Parameters(object):
         self.label_2.raise_()
         self.label_3.raise_()
         self.label_4.raise_()
+        self.label_5.raise_()
+        self.label_6.raise_()
+        self.label_7.raise_()
+        self.label_8.raise_()
 
         self.input_box_for_ms.raise_()
         self.input_box_for_frames.raise_()
@@ -159,6 +203,8 @@ class Parameters(object):
 
         self.input_box_for_channels.raise_()
 
+        self.output_for_bandwidth.raise_()
+
     def retranslateUi(self, translate: QtCore.QCoreApplication.translate):
         self.group_box_parameters.setTitle(translate("MainWindow", "Parameters"))
         self.radio_button_payload.setText(translate("MainWindow", "Payload is"))
@@ -170,3 +216,10 @@ class Parameters(object):
         self.radio_button_IP.setText(translate("MainWindow", "IP protocol version"))
         self.radio_button_link.setText(translate("MainWindow", "Link layer header(Includes Layer 1 and Layer 2)"))
         self.label_4.setText(translate("MainWindow", "For a number of channels"))
+
+        self.group_box_result.setTitle(translate("MainWindow", "Result"))
+        self.label_5.setText(translate("MainWindow", "Bandwidth"))
+        self.label_6.setText(translate("MainWindow", "kbps"))
+        self.label_7.setText(translate("MainWindow", "Packet rate"))
+        self.label_8.setText(translate("MainWindow", "pps"))
+

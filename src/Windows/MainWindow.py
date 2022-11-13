@@ -12,10 +12,10 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
 
         self.upper_menu = Menu(MainWindow)
-        self.parameters = GroupBoxManager(MainWindow)
+        self.group_boxes = GroupBoxManager(MainWindow)
 
         self.upper_menu.setupUi()
-        self.parameters.setupUi()
+        self.group_boxes.setupUi()
 
         self.retranslateUi(MainWindow)
 
@@ -25,5 +25,5 @@ class Ui_MainWindow(object):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
 
-        self.parameters.retranslateUi(_translate)
         self.upper_menu.retranslateUi(_translate)
+        self.group_boxes.retranslateUi(_translate)

@@ -15,14 +15,14 @@ class Results(object):
         self.__group_box = GroupBox.setup("Result",
                                           QtCore.QRect(9, 420, 1160, 340),
                                           self.__central_widget)
-        self.__setupDependencies()
+        self.__setup_dependencies()
 
-    def __setupDependencies(self):
-        self.__setupResultsBandwidth()
-        self.__setupResultsPPS()
-        self.__retranslateUi()
+    def __setup_dependencies(self):
+        self.__setup_bandwidth()
+        self.__setup_packet_rate()
+        self.__retranslate_Ui()
 
-    def __setupResultsBandwidth(self):
+    def __setup_bandwidth(self):
         bandwidth_horizontal = Ui_HorizontalLayout(self.__group_box,
                                                    QtCore.QRect(350, 100, 400, 50),
                                                    "ResultLayout")
@@ -44,7 +44,7 @@ class Results(object):
         self.label_6 = Label.setup("label_6", QtCore.QSize(60, 31))
         bandwidth_horizontal.layout.addWidget(self.label_6)
 
-    def __setupResultsPPS(self):
+    def __setup_packet_rate(self):
         packet_rate_horizontal = Ui_HorizontalLayout(self.__group_box,
                                                      QtCore.QRect(350, 200, 400, 50),
                                                      "ResultLayout")
@@ -65,7 +65,7 @@ class Results(object):
         self.label_8 = Label.setup("label_8", QtCore.QSize(60, 31))
         packet_rate_horizontal.layout.addWidget(self.label_8)
 
-    def __retranslateUi(self):
+    def __retranslate_Ui(self):
         translate = QtCore.QCoreApplication.translate
         self.__group_box.setTitle(translate("MainWindow", "Result"))
         self.label_5.setText(translate("MainWindow", "Bandwidth:"))

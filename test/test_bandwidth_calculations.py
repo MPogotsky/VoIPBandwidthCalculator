@@ -51,15 +51,15 @@ def test_voip_calculator_bandwidth_calculations_for_sets_of_protocols() -> None:
 
     voip_with_bandwidth = {
         VoIP_Calculator(Header(["RTP", "UDP", "IPv4", "ethernet 802.3"]),
-                        Codec("G.711 64kbps", frames=160)):              95.2,
+                        Codec("G.711 64kbps", frames=160)):                             95.2,
         VoIP_Calculator(Header(["RTP", "UDP", "IPv6"]),
-                        Codec("G.729 8kbps", sample_interval=20)):        32,
+                        Codec("G.729 8kbps", sample_interval=20), channels=2):          64,
         VoIP_Calculator(Header(["RTP", "UDP", "IPv4", "ethernet 802.3"]),
-                        Codec("G.729 8kbps", sample_interval=20)):        39.2,
+                        Codec("G.729 8kbps", sample_interval=20)):                      39.2,
         VoIP_Calculator(Header(["RTP", "UDP", "IPv4", "ethernet 802.3"]),
-                        Codec("G.723.1 5.3kbps", frames=3)):            12.2,
+                        Codec("G.723.1 5.3kbps", frames=3)):                            12.2,
         VoIP_Calculator(Header(["RTP", "UDP", "IPv6", "ethernet 802.3"]),
-                        Codec("G.723.1 5.3kbps", frames=3)):            14.0,
+                        Codec("G.723.1 5.3kbps", frames=3), channels=3):                42,
     }
 
     for calculator, expected_bandwidth in voip_with_bandwidth.items():

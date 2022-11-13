@@ -3,9 +3,10 @@ from .HeaderTemplate import Header
 
 
 class VoIP_Calculator(object):
-    def __init__(self, header: Header, codec: Codec):
+    def __init__(self, header: Header, codec: Codec, channels: int = 1):
         self.__header = header
         self.__codec = codec
+        self.__number_of_channels = channels
 
         self.__voice_payload_size = self.__calculate_voice_payload_size()
         self.__packet_rate = self.__calculate_packet_rate()
@@ -28,6 +29,7 @@ class VoIP_Calculator(object):
         """
         bit_rate_bps = self.__codec.bit_rate * 1000
         packet_rate = bit_rate_bps / self.__voice_payload_size
+        packet_rate = packet_rate * self.__number_of_channels
         return round(packet_rate, 1)
 
     def __calculate_total_packet_size(self) -> float:

@@ -49,7 +49,7 @@ def test_codec_pps_calculations() -> None:
     and one some sample interval.
     """
     codec_sets_with_pps = {
-        Codec("G.711 64kbps", sample_interval=40):      25,
+        Codec("G.711 64kbps", sample_interval=40, ):      25,
         Codec("G.729 8kbps", sample_interval=20):       50,
         Codec("G.723.1 5.3kbps", sample_interval=30):   33.3
     }

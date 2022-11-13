@@ -7,7 +7,7 @@ class Ui_OutputBox(WidgetTemplate):
         output_box = QtWidgets.QTextBrowser(self._widget)
         output_box.setFixedSize(dimensions)
         output_box.setObjectName(name)
-        output_box.setFont(self.getFont())
+        output_box.setFont(self.get_font())
         output_box.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
         output_box.setAlignment(QtCore.Qt.AlignRight)
 

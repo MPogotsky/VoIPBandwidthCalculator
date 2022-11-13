@@ -11,7 +11,7 @@ class WidgetTemplate(object):
         """Perform ui_template object setup"""
         pass
 
-    def getFont(self):
+    def get_font(self):
         """Get standard font"""
         ui_font = Ui_Font()
         font = ui_font.setup()

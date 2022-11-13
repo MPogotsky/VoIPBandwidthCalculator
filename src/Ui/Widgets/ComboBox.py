@@ -10,19 +10,19 @@ fillings = {
 class Ui_ComboBox(WidgetTemplate):
     def __init__(self, group_box: QtWidgets):
         super().__init__(group_box)
-        self.comboBox = None
+        self.combo_box = None
 
     def setup(self, name: str, dimensions: QtCore.QSize):
-        self.comboBox = QtWidgets.QComboBox(self._widget)
-        self.comboBox.setMinimumSize(dimensions)
-        self.comboBox.setObjectName(name)
-        self.comboBox.setFont(self.getFont())
+        self.combo_box = QtWidgets.QComboBox(self._widget)
+        self.combo_box.setMinimumSize(dimensions)
+        self.combo_box.setObjectName(name)
+        self.combo_box.setFont(self.get_font())
 
-        self._fillWithItems()
+        self.__fill_with_items()
 
-        return self.comboBox
+        return self.combo_box
 
-    def _fillWithItems(self):
-        filling = fillings[self.comboBox.objectName()]
+    def __fill_with_items(self):
+        filling = fillings[self.combo_box.objectName()]
         for item in filling:
-            self.comboBox.addItem(item)
+            self.combo_box.addItem(item)

@@ -7,7 +7,7 @@ class Ui_InputBox(WidgetTemplate):
         input_box = QtWidgets.QLineEdit(self._widget)
         input_box.setMinimumSize(dimensions)
         input_box.setObjectName(name)
-        input_box.setFont(self.getFont())
+        input_box.setFont(self.get_font())
         input_box.setAlignment(QtCore.Qt.AlignRight)
 
         return input_box

@@ -6,7 +6,7 @@ class Ui_RadioButton(WidgetTemplate):
     def setup(self, name: str, dimensions: QtCore.QSize):
         button = QtWidgets.QRadioButton(self._widget)
         button.setMinimumSize(dimensions)
-        button.setFont(self.getFont())
+        button.setFont(self.get_font())
         button.setChecked(False)
         button.setObjectName(name)
 

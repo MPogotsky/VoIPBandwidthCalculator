@@ -6,11 +6,11 @@ class Ui_MenuBar(object):
         self.__Window = Window
 
     def setup(self, name: str, dimensions: QtCore.QRect):
-        menubar = QtWidgets.QMenuBar(self.__Window)
-        menubar.setGeometry(dimensions)
-        menubar.setObjectName(name)
+        menu_bar = QtWidgets.QMenuBar(self.__Window)
+        menu_bar.setGeometry(dimensions)
+        menu_bar.setObjectName(name)
 
-        return menubar
+        return menu_bar
 
 
 class Ui_SubMenu:

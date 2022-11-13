@@ -1,7 +1,7 @@
 import sys
 import os
 from PyQt5 import QtWidgets
-from src.Windows.MainWindow import Ui_MainWindow
+from src.Ui.MainWindow import Ui_MainWindow
 
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"

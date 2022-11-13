@@ -143,13 +143,16 @@ class GroupBoxManager(object):
 
     def __setupResultsBandwidth(self):
         bandwidth_horizontal = Ui_HorizontalLayout(self.group_box_result,
-                                                   QtCore.QRect(320, 40, 500, 31),
+                                                   QtCore.QRect(350, 100, 400, 50),
                                                    "ResultLayout")
 
         Label = Ui_Label(bandwidth_horizontal.widget)
         OutputBox = Ui_OutputBox(bandwidth_horizontal.widget)
 
-        self.label_5 = Label.setup("label_5", QtCore.QSize(120, 31))
+        bandwidth_horizontal.layout.setAlignment(QtCore.Qt.AlignLeft)
+        bandwidth_horizontal.layout.addStretch(1)
+
+        self.label_5 = Label.setup("label_5", QtCore.QSize(100, 31))
         bandwidth_horizontal.layout.addWidget(self.label_5)
         bandwidth_horizontal.layout.addSpacing(5)
 
@@ -162,18 +165,20 @@ class GroupBoxManager(object):
 
     def __setupResultsPPS(self):
         packet_rate_horizontal = Ui_HorizontalLayout(self.group_box_result,
-                                                     QtCore.QRect(320, 80, 500, 31),
+                                                     QtCore.QRect(350, 200, 400, 50),
                                                      "ResultLayout")
 
         Label = Ui_Label(packet_rate_horizontal.widget)
         OutputBox = Ui_OutputBox(packet_rate_horizontal.widget)
 
+        packet_rate_horizontal.layout.setAlignment(QtCore.Qt.AlignLeft)
+        packet_rate_horizontal.layout.addStretch(1)
+
         self.label_7 = Label.setup("label_7", QtCore.QSize(120, 31))
         packet_rate_horizontal.layout.addWidget(self.label_7)
         packet_rate_horizontal.layout.addSpacing(5)
 
-        self.output_for_bandwidth = OutputBox.setup("OutForBandwidth", QtCore.QSize(100, 31))
-        packet_rate_horizontal.layout.setAlignment(QtCore.Qt.AlignLeft)
+        self.output_for_bandwidth = OutputBox.setup("OutForPPS", QtCore.QSize(100, 31))
         packet_rate_horizontal.layout.addWidget(self.output_for_bandwidth)
 
         self.label_8 = Label.setup("label_8", QtCore.QSize(60, 31))
@@ -218,8 +223,8 @@ class GroupBoxManager(object):
         self.label_4.setText(translate("MainWindow", "For a number of channels"))
 
         self.group_box_result.setTitle(translate("MainWindow", "Result"))
-        self.label_5.setText(translate("MainWindow", "Bandwidth"))
+        self.label_5.setText(translate("MainWindow", "Bandwidth:"))
         self.label_6.setText(translate("MainWindow", "kbps"))
-        self.label_7.setText(translate("MainWindow", "Packet rate"))
+        self.label_7.setText(translate("MainWindow", "Packet rate:"))
         self.label_8.setText(translate("MainWindow", "pps"))
 

@@ -8,7 +8,7 @@ class Ui_MainWindow(object):
         self.parameters = None
         self.upper_menu = None
 
-    def setupUi(self, MainWindow):
+    def setup_Ui(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
 
         central_widget = QtWidgets.QWidget(MainWindow)

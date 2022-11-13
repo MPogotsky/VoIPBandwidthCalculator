@@ -9,6 +9,6 @@ if __name__ == "__main__":
     MainWindow = QtWidgets.QMainWindow()
     MainWindow.setFixedSize(1180, 800)
     ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
+    ui.setup_Ui(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())

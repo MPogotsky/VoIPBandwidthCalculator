@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtWidgets
-from .ObjTemplate import Ui_Template
+from .WidgetTemplate import WidgetTemplate
 
 
-class Ui_Label(Ui_Template):
+class Ui_Label(WidgetTemplate):
     def setup(self, name: str, dimensions: QtCore.QSize):
-        label = QtWidgets.QLabel(self.widget)
+        label = QtWidgets.QLabel(self._widget)
         label.setMinimumSize(dimensions)
         label.setFont(self.getFont())
         label.setObjectName(name)

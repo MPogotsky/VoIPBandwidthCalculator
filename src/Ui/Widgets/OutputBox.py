@@ -1,14 +1,14 @@
 from PyQt5 import QtCore, QtWidgets
-from .ObjTemplate import Ui_Template
+from .WidgetTemplate import WidgetTemplate
 
 
-class Ui_OutputBox(Ui_Template):
+class Ui_OutputBox(WidgetTemplate):
     def setup(self, name: str, dimensions: QtCore.QSize):
-        input_box = QtWidgets.QTextBrowser(self.widget)
-        input_box.setFixedSize(dimensions)
-        input_box.setObjectName(name)
-        input_box.setFont(self.getFont())
-        input_box.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
-        input_box.setAlignment(QtCore.Qt.AlignRight)
+        output_box = QtWidgets.QTextBrowser(self._widget)
+        output_box.setFixedSize(dimensions)
+        output_box.setObjectName(name)
+        output_box.setFont(self.getFont())
+        output_box.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAlwaysOff)
+        output_box.setAlignment(QtCore.Qt.AlignRight)
 
-        return input_box
+        return output_box

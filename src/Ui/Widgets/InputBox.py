@@ -1,10 +1,10 @@
 from PyQt5 import QtCore, QtWidgets
-from .ObjTemplate import Ui_Template
+from .WidgetTemplate import WidgetTemplate
 
 
-class Ui_InputBox(Ui_Template):
+class Ui_InputBox(WidgetTemplate):
     def setup(self, name: str, dimensions: QtCore.QSize):
-        input_box = QtWidgets.QLineEdit(self.widget)
+        input_box = QtWidgets.QLineEdit(self._widget)
         input_box.setMinimumSize(dimensions)
         input_box.setObjectName(name)
         input_box.setFont(self.getFont())

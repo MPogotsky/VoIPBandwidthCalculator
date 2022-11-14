@@ -1,5 +1,4 @@
-from PyQt5 import QtWidgets
-from PyQt5.QtCore import QObject
+from PyQt5 import QtCore, QtWidgets
 
 from src.Ui.Components.Parameters import Parameters
 from src.Ui.Components.Results import Results
@@ -91,7 +90,9 @@ class ComponentManager(object):
             channels)
 
         self.results.output_for_bandwidth.setText(self.calculator.get_bandwidth_as_string())
+        self.results.output_for_bandwidth.setAlignment(QtCore.Qt.AlignRight)
         self.results.output_for_packet_rate.setText(self.calculator.get_pps_as_string())
+        self.results.output_for_packet_rate.setAlignment(QtCore.Qt.AlignRight)
 
     def __set_IP_version(self):
         if self.parameters.radio_button_IP.isChecked():

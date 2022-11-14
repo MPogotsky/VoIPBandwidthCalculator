@@ -9,9 +9,9 @@ class Codec:
         :param sample_interval: codec sampling interval
         :param frames: number of frames in one packet
         """
+
         self.name = name
         self.bit_rate = self.__get_default_bitrate()
-
         if sample_interval is None and frames is None:
             raise Exception("Specify codecs sample interval or number of frames")
 

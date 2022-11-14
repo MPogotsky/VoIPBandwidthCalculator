@@ -25,4 +25,4 @@ class Ui_ComboBox(WidgetTemplate):
     def __fill_with_items(self):
         filling = fillings[self.combo_box.objectName()]
         for item in filling:
-            self.combo_box.addItem(item)
+            self.combo_box.addItem(str(item))

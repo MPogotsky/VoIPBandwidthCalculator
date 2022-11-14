@@ -3,7 +3,16 @@ from .Header import Header
 
 
 class VoIP_Calculator(object):
-    def __init__(self, header: Header, codec: Codec, channels: int = 1):
+    def __init__(self):
+        self.__header = None
+        self.__codec = None
+        self.__number_of_channels = None
+
+        self.__voice_payload_size = None
+        self.__packet_rate = None
+        self.__bandwidth = None
+
+    def calculate(self, header: Header, codec: Codec, channels: int = 1):
         self.__header = header
         self.__codec = codec
         self.__number_of_channels = channels
@@ -66,7 +75,7 @@ class VoIP_Calculator(object):
         """
         :return: bandwidth in kbps as str
         """
-        return str(self.__bandwidth) + "kbps"
+        return str(self.__bandwidth)
 
     def get_pps(self) -> float:
         """
@@ -78,4 +87,4 @@ class VoIP_Calculator(object):
         """
         :return: packet rate in pps as string
         """
-        return str(self.__packet_rate) + "pps"
+        return str(self.__packet_rate)

@@ -24,6 +24,6 @@ class Ui_MainWindow(object):
         ComponentManager(MainWindow, central_widget, calculator)
 
         translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(translate("MainWindow", "MainWindow"))
+        MainWindow.setWindowTitle(translate("MainWindow", "VoIP Bandwidth Calculator"))
 
         QtCore.QMetaObject.connectSlotsByName(MainWindow)

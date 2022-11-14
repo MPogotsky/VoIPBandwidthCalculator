@@ -33,11 +33,14 @@ class Parameters(object):
 
     def __setup_payload(self):
         payload_grid = Ui_GridLayout(self.__group_box,
-                                     QtCore.QRect(60, 30, 1000, 100),
+                                     QtCore.QRect(40, 30, 1000, 100),
                                      "payloadLayout")
-        Label = Ui_Label(payload_grid.widget)
-        self.label_payload = Label.setup("Payload", QtCore.QSize(131, 31))
-        payload_grid.layout.addWidget(self.label_payload, 0, 0, 1, 1)
+        RadioButton = Ui_RadioButton(payload_grid.widget)
+        self.radio_button_payload = RadioButton.setup("Payload", QtCore.QSize(131, 31))
+        self.radio_button_payload.setChecked(True)
+        payload_grid.layout.addWidget(self.radio_button_payload, 0, 0, 1, 1)
+
+        self.__button_group.addButton(self.radio_button_payload)
 
         ComboBox = Ui_ComboBox(payload_grid.widget)
         self.combo_box_payload = ComboBox.setup("PayloadComboBox", QtCore.QSize(180, 31))
@@ -50,6 +53,7 @@ class Parameters(object):
         self.input_box_for_frames = InputBox.setup("InputForFrames", QtCore.QSize(111, 31))
         payload_grid.layout.addWidget(self.input_box_for_frames, 1, 4, 1, 1)
 
+        Label = Ui_Label(payload_grid.widget)
         self.label_1 = Label.setup("label", QtCore.QSize(51, 21))
         payload_grid.layout.addWidget(self.label_1, 0, 2, 1, 1)
         self.label_2 = Label.setup("label_2", QtCore.QSize(41, 31))
@@ -131,7 +135,7 @@ class Parameters(object):
     def __retranslate_Ui(self):
         translate = QtCore.QCoreApplication.translate
         self.__group_box.setTitle(translate("MainWindow", "Parameters"))
-        self.label_payload.setText(translate("MainWindow", "Payload is"))
+        self.radio_button_payload.setText(translate("MainWindow", "Payload is"))
         self.label_1.setText(translate("MainWindow", "with"))
         self.label_2.setText(translate("MainWindow", "ms"))
         self.label_3.setText(translate("MainWindow", "frames per packet"))

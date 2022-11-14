@@ -1,4 +1,6 @@
 from PyQt5 import QtWidgets
+from PyQt5.QtCore import QObject
+
 from src.Ui.Components.Parameters import Parameters
 from src.Ui.Components.Results import Results
 
@@ -17,13 +19,25 @@ class ComponentManager(object):
         self.parameters = Parameters(self.__Window, central_widget)
         self.results = Results(self.__Window, central_widget)
 
-        self.parameters.combo_box_payload.currentIndexChanged.connect(lambda: self.__set_codec())
-        self.parameters.input_box_for_ms.returnPressed.connect(lambda: self.__set_codec())
-        self.parameters.input_box_for_frames.returnPressed.connect(lambda: self.__set_codec())
-        # self.parameters.combo_box_IP_version.currentIndexChanged.connect(lambda: self.__set_IP_version())
-        # self.parameters.input_box_for_channels.returnPressed.connect(lambda: self.__on_click())
+        self.parameters.radio_button_payload.clicked.connect(lambda: self.__on_change())
+        self.parameters.combo_box_payload.currentIndexChanged.connect(lambda: self.__on_change())
 
-    def __set_codec(self):
+        self.parameters.input_box_for_ms.returnPressed.connect(
+            lambda: [self.parameters.input_box_for_frames.setText(str("")),
+                     self.__on_change()])
+        self.parameters.input_box_for_frames.returnPressed.connect(
+            lambda: [self.parameters.input_box_for_ms.setText(str("")),
+                     self.__on_change()])
+
+        self.parameters.input_box_for_channels.returnPressed.connect(lambda: self.__on_change())
+
+        self.parameters.radio_button_RTP.clicked.connect(lambda: self.__on_change())
+        self.parameters.radio_button_UDP.clicked.connect(lambda: self.__on_change())
+        self.parameters.radio_button_IP.clicked.connect(lambda: self.__on_change())
+        self.parameters.combo_box_IP_version.currentIndexChanged.connect(lambda: self.__on_change())
+        self.parameters.radio_button_link.clicked.connect(lambda: self.__on_change())
+
+    def __on_change(self):
         codec_name = str(self.parameters.combo_box_payload.currentText())
         sample_interval = self.parameters.input_box_for_ms.text()
         frames = self.parameters.input_box_for_frames.text()
@@ -35,7 +49,10 @@ class ComponentManager(object):
         elif frames:
             frames = int(frames)
             codec = Codec(codec_name, frames=frames)
-            self.parameters.input_box_for_ms.setText(str(codec.sample_interval))
+            sample_interval = codec.sample_interval
+            if not str(sample_interval).startswith("0."):
+                sample_interval = int(sample_interval)
+            self.parameters.input_box_for_ms.setText(str(sample_interval))
         else:
             QtWidgets.QMessageBox.information(self.__Window,
                                               "Lack of data",
@@ -47,11 +64,31 @@ class ComponentManager(object):
             channels = int(channels)
         else:
             channels = 1
+            self.parameters.input_box_for_channels.setText(str(channels))
+
+        headers = []
+        if self.parameters.radio_button_RTP.isChecked():
+            headers.append("RTP")
+
+        if self.parameters.radio_button_UDP.isChecked():
+            headers.append("RTP")
+            headers.append("UDP")
+
+        if self.parameters.radio_button_IP.isChecked():
+            headers.append("RTP")
+            headers.append("UDP")
+            headers.append(str(self.parameters.combo_box_IP_version.currentText()))
+
+        if self.parameters.radio_button_link.isChecked():
+            headers.append("RTP")
+            headers.append("UDP")
+            headers.append(str(self.parameters.combo_box_IP_version.currentText()))
+            headers.append("ethernet 802.3")
 
         self.calculator.calculate(
-                Header(),
-                codec,
-                channels)
+            Header(headers),
+            codec,
+            channels)
 
         self.results.output_for_bandwidth.setText(self.calculator.get_bandwidth_as_string())
         self.results.output_for_packet_rate.setText(self.calculator.get_pps_as_string())

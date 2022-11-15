@@ -1,8 +1,6 @@
 from PyQt5 import QtCore, QtWidgets
 
 from src.Ui.Components.ComponentManager import ComponentManager
-from src.Ui.Components.Parameters import Parameters
-from src.Ui.Components.Results import Results
 
 from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
 

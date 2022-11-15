@@ -42,10 +42,16 @@ class ComponentManager(object):
         frames = self.parameters.input_box_for_frames.text()
 
         if sample_interval:
+            if not self.__check_input(sample_interval):
+                self.parameters.input_box_for_ms.setText(str(""))
+                return
             sample_interval = int(sample_interval)
             codec = Codec(codec_name, sample_interval=sample_interval)
             self.parameters.input_box_for_frames.setText(str(codec.frame_number))
         elif frames:
+            if not self.__check_input(frames):
+                self.parameters.input_box_for_frames.setText(str(""))
+                return
             frames = int(frames)
             codec = Codec(codec_name, frames=frames)
             sample_interval = codec.sample_interval
@@ -60,6 +66,9 @@ class ComponentManager(object):
 
         channels = self.parameters.input_box_for_channels.text()
         if channels:
+            if not self.__check_input(channels):
+                self.parameters.input_box_for_channels.setText(str(""))
+                return
             channels = int(channels)
         else:
             channels = 1
@@ -106,3 +115,15 @@ class ComponentManager(object):
 
         self.results.output_for_bandwidth.setText(self.calculator.get_bandwidth_as_string())
         self.results.output_for_packet_rate.setText(self.calculator.get_pps_as_string())
+
+    def __check_input(self, text: str):
+        try:
+            float(text)
+            if float(text) < 0:
+                raise ValueError
+            return True
+        except ValueError:
+            QtWidgets.QMessageBox.warning(self.__Window,
+                                          "Wrong data",
+                                          "Wrong input value! Provide positive integers or doubles!")
+            return False

@@ -3,12 +3,17 @@ import os
 from PyQt5 import QtWidgets, QtGui
 from src.Ui.MainWindow import Ui_MainWindow
 
+basedir = os.path.dirname(__file__)
+
 if __name__ == "__main__":
     os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     app = QtWidgets.QApplication(sys.argv)
+    basedir = os.path.dirname(__file__)
+    print(os.path.join(basedir, "dependency", 'pwr.ico'))
+    app.setWindowIcon(QtGui.QIcon(os.path.join(basedir, "dependency", 'pwr.png')))
     MainWindow = QtWidgets.QMainWindow()
     MainWindow.setFixedSize(1180, 800)
-    MainWindow.setWindowIcon(QtGui.QIcon("dependency/pwr.ico"))
+    MainWindow.setWindowIcon(QtGui.QIcon(os.path.join(basedir, "dependency", 'pwr.ico')))
     ui = Ui_MainWindow()
     ui.setup_Ui(MainWindow)
     MainWindow.show()

@@ -17,9 +17,9 @@ class Codec:
 
         if sample_interval is None:
             self.frame_number = frames
-            self.sample_interval = self.__calculate_codec_sample_interval()
+            self.frame_size = self.__calculate_codec_sample_interval()
         else:
-            self.sample_interval = sample_interval
+            self.frame_size = sample_interval
             self.frame_number = self.__calculate_number_of_frames()
 
     def __get_default_bitrate(self) -> int:
@@ -34,7 +34,7 @@ class Codec:
         """
         for codec_family, standard_data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
             if codec_family in self.name:
-                return int(self.sample_interval / standard_data[1])
+                return int(self.frame_size / standard_data[1])
 
     def __calculate_codec_sample_interval(self) -> float:
         """

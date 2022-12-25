@@ -38,15 +38,15 @@ class ComponentManager(object):
 
     def __on_change(self):
         codec_name = str(self.parameters.combo_box_payload.currentText())
-        sample_interval = self.parameters.input_box_for_ms.text()
+        frame_size = self.parameters.input_box_for_ms.text()
         frames = self.parameters.input_box_for_frames.text()
 
-        if sample_interval:
-            if not self.__check_input(sample_interval):
+        if frame_size:
+            if not self.__check_input(frame_size):
                 self.parameters.input_box_for_ms.setText(str(""))
                 return
-            sample_interval = int(sample_interval)
-            codec = Codec(codec_name, sample_interval=sample_interval)
+            frame_size = int(frame_size)
+            codec = Codec(codec_name, sample_interval=frame_size)
             self.parameters.input_box_for_frames.setText(str(codec.frame_number))
         elif frames:
             if not self.__check_input(frames):
@@ -54,14 +54,14 @@ class ComponentManager(object):
                 return
             frames = int(frames)
             codec = Codec(codec_name, frames=frames)
-            sample_interval = codec.sample_interval
-            if not str(sample_interval).startswith("0."):
-                sample_interval = int(sample_interval)
-            self.parameters.input_box_for_ms.setText(str(sample_interval))
+            frame_size = codec.frame_size
+            if not str(frame_size).startswith("0."):
+                frame_size = int(frame_size)
+            self.parameters.input_box_for_ms.setText(str(frame_size))
         else:
             QtWidgets.QMessageBox.information(self.__Window,
                                               "Lack of data",
-                                              "Enter the number of frames or sample interval!")
+                                              "Enter the number of frames or frame size!")
             return
 
         channels = self.parameters.input_box_for_channels.text()

@@ -23,11 +23,11 @@ class VoIP_Calculator(object):
 
     def __calculate_voice_payload_size(self) -> float:
         """
-        Get voice payload size that represents the number of bytes
-        that are captured by the Digital Signal Processor
+        Get voice payload size that represents the number of voice that
+        going to be transmitted via network in one packet
         :return: voice payload size in bits
         """
-        voice_payload_size = (self.__codec.bit_rate * 1000) * (self.__codec.sample_interval * 10 ** -3)
+        voice_payload_size = (self.__codec.bit_rate * 1000) * (self.__codec.frame_size * 10 ** -3)
         return round(voice_payload_size, 1)
 
     def __calculate_packet_rate(self) -> float:

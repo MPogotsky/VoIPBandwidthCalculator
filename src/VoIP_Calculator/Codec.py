@@ -45,4 +45,3 @@ class Codec:
         for codec, data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
             if codec in self.name:
                 return float(self.frame_number * data[1])  # data[1] is codec standard frame size
-

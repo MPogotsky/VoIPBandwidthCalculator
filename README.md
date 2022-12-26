@@ -44,13 +44,13 @@ Ethernet 802.3  | 38 byte|
 VoIP calculator is a relatively simple application. It consists of one window.
 divided into two sections, the first section is for setting parameters and the other one
 is used to demonstrate the results.
-![VoIP Calculator main window](C:\Users\matve\Pictures\Screenshots\MainWindow.PNG "Figure_1")
+![VoIP Calculator main window](dependency/ReadmeImages/MainWindow.PNG "Figure_1")
 
 Checkout other figures below, to get used to VoIP Calculator UI.
 
 1. Selection of the codec and its parameters
-![VoIP Calculator codecs](C:/Users/matve/Pictures/Screenshots/CodecWindow.png "Figure_2")
+![VoIP Calculator codecs](dependency/ReadmeImages/CodecWindow.png "Figure_2")
 2. Protocol stack selection with IP version selection
-![VoIP Calculator protocols for IP](C:/Users/matve/Pictures/Screenshots/ProtocolWindow.png)
+![VoIP Calculator protocols for IP](dependency/ReadmeImages/ProtocolWindow.png)
 3. Number of channels
-![VoIP Calculator number of channels](C:/Users/matve/Pictures/Screenshots/CahnnelWindow.png)
+![VoIP Calculator number of channels](dependency/ReadmeImages/CahnnelWindow.png)

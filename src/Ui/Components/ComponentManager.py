@@ -107,15 +107,6 @@ class ComponentManager(object):
         if self.parameters.radio_button_IP.isChecked():
             print(self.parameters.combo_box_IP_version.currentText())
 
-    def __on_click(self):
-        self.calculator.calculate(
-            Header(["RTP", "UDP"]),
-            Codec("G.711 64kbps", voice_payload_size=20),
-            int(self.parameters.input_box_for_channels.text()))
-
-        self.results.output_for_bandwidth.setText(self.calculator.get_bandwidth_as_string())
-        self.results.output_for_packet_rate.setText(self.calculator.get_pps_as_string())
-
     def __check_input(self, text: str):
         try:
             float(text)

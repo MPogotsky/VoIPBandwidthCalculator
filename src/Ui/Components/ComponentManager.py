@@ -40,36 +40,36 @@ class ComponentManager(object):
 
     def __on_change(self):
         codec_name = str(self.parameters.combo_box_payload.currentText())
-        voice_payload_size = self.parameters.input_box_for_ms.text()
-        frames = self.parameters.input_box_for_frames.text()
+        voice_payload_size_str = self.parameters.input_box_for_ms.text()
+        frames_str = self.parameters.input_box_for_frames.text()
 
-        if voice_payload_size:
-            if not self.validator.check_input_voice_payload(codec_name, voice_payload_size):
+        if voice_payload_size_str:
+            if not self.validator.check_input_voice_payload(codec_name, voice_payload_size_str):
                 self.parameters.input_box_for_ms.setText(str(""))
                 return
-            voice_payload_size = int(voice_payload_size)
+            voice_payload_size = int(voice_payload_size_str)
             codec = Codec(codec_name, voice_payload_size=voice_payload_size)
             self.parameters.input_box_for_frames.setText(str(codec.frame_number))
-        elif frames:
-            if not self.validator.check_input(frames):
+        elif frames_str:
+            if not self.validator.check_input(frames_str):
                 self.parameters.input_box_for_frames.setText(str(""))
                 return
-            frames = int(frames)
+            frames = int(frames_str)
             codec = Codec(codec_name, frames=frames)
             voice_payload_size = codec.voice_payload_size
-            self.parameters.input_box_for_ms.setText(str(int(voice_payload_size)))
+            self.parameters.input_box_for_ms.setText(str(voice_payload_size))
         else:
             QtWidgets.QMessageBox.information(self.__Window,
                                               "Lack of data",
                                               "Enter the number of frames or voice payload!")
             return
 
-        channels = self.parameters.input_box_for_channels.text()
-        if channels:
-            if not self.validator.check_input(channels):
+        channels_str = self.parameters.input_box_for_channels.text()
+        if channels_str:
+            if not self.validator.check_input(channels_str):
                 self.parameters.input_box_for_channels.setText(str(""))
                 return
-            channels = int(channels)
+            channels = int(channels_str)
         else:
             channels = 1
             self.parameters.input_box_for_channels.setText(str(channels))
@@ -106,28 +106,4 @@ class ComponentManager(object):
     def __set_IP_version(self):
         if self.parameters.radio_button_IP.isChecked():
             print(self.parameters.combo_box_IP_version.currentText())
-
-    # def __check_input(self, text: str):
-    #     try:
-    #         int(text)
-    #         if int(text) < 0:
-    #             raise ValueError
-    #         return True
-    #     except ValueError:
-    #         QtWidgets.QMessageBox.warning(self.__Window,
-    #                                       "Wrong data",
-    #                                       "Wrong input value! Provide positive integers!")
-    #         return False
-    #
-    # def __check_input_voice_payload(self, text: str):
-    #     try:
-    #         int(text)
-    #         if int(text) < 0:
-    #             raise ValueError
-    #         return True
-    #     except ValueError:
-    #         QtWidgets.QMessageBox.warning(self.__Window,
-    #                                       "Wrong data",
-    #                                       "Wrong input value! Provide positive integers!")
-    #         return False
 

@@ -2,7 +2,7 @@ from .CodecSets import ITU_T_and_IETF_Defined_Codec_Interval_Standards
 
 
 class Codec:
-    def __init__(self, name: str, voice_payload_size: float = None, frames: int = None):
+    def __init__(self, name: str, voice_payload_size: int = None, frames: int = None):
         """
         Class that specifies and calculates codec related parameters.
         :param name: codec name with bit rate
@@ -36,7 +36,7 @@ class Codec:
             if codec_family in self.name:
                 return int(self.voice_payload_size / standard_data[1])
 
-    def __calculate_voice_payload_size(self) -> float:
+    def __calculate_voice_payload_size(self) -> int:
         """
         Get voice payload size that represents the number of voice that
         going to be transmitted via network in one packet
@@ -44,4 +44,4 @@ class Codec:
         """
         for codec, data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
             if codec in self.name:
-                return float(self.frame_number * data[1])  # data[1] is codec standard frame size
+                return int(self.frame_number * data[1])  # data[1] is codec standard frame size

@@ -42,5 +42,7 @@ class Codec:
         going to be transmitted via network in one packet
         :return: voice payload size in bits
         """
-        voice_payload_size = (self.bit_rate * 1000) * (self.voice_payload_size * 10 ** -3)
-        return round(voice_payload_size, 1)
+        for codec, data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
+            if codec in self.name:
+                return float(self.frame_number * data[1])  # data[1] is codec standard frame size
+

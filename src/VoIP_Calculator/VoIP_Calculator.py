@@ -8,7 +8,6 @@ class VoIP_Calculator(object):
         self.__codec = None
         self.__number_of_channels = None
 
-        self.__voice_payload_size = None
         self.__packet_rate = None
         self.__bandwidth = None
 
@@ -17,18 +16,8 @@ class VoIP_Calculator(object):
         self.__codec = codec
         self.__number_of_channels = channels
 
-        self.__voice_payload_size = self.__calculate_voice_payload_size()
         self.__packet_rate = self.__calculate_packet_rate()
         self.__bandwidth = self.__calculate_bandwidth()
-
-    def __calculate_voice_payload_size(self) -> float:
-        """
-        Get voice payload size that represents the number of voice that
-        going to be transmitted via network in one packet
-        :return: voice payload size in bits
-        """
-        voice_payload_size = (self.__codec.bit_rate * 1000) * (self.__codec.frame_size * 10 ** -3)
-        return round(voice_payload_size, 1)
 
     def __calculate_packet_rate(self) -> float:
         """
@@ -36,8 +25,7 @@ class VoIP_Calculator(object):
         transmitted every second in order to deliver the codec bit rate.
         :return: packet rate in pps
         """
-        bit_rate_bps = self.__codec.bit_rate * 1000
-        packet_rate = bit_rate_bps / self.__voice_payload_size
+        packet_rate = 1 / (self.__codec.voice_payload_size * 10 ** -3)
         packet_rate = packet_rate * self.__number_of_channels
         return round(packet_rate, 1)
 
@@ -47,23 +35,20 @@ class VoIP_Calculator(object):
         protocol header together with voice payload.
         :return: packet size in bits
         """
-        return self.__header.total_size_bits + self.__voice_payload_size
+        return self.__header.total_size_bits + self.__codec.voice_payload_size
 
     def __calculate_bandwidth(self) -> float:
         """
-        Calculate VoIP bandwidth.
+        Calculate bandwidth.
         :return: bandwidth in kbps
         """
-        total_packet_size = self.__calculate_total_packet_size()
-        bandwidth = (total_packet_size * self.__packet_rate) / 1000
-
+        bit_rate = self.__codec.bit_rate
+        voice_payload_in_ms = self.__codec.voice_payload_size
+        voice_payload_bits = bit_rate * voice_payload_in_ms  # kbps * ms = bits
+        total_packet_size = self.__header.total_size_bits + voice_payload_bits
+        bandwidth = (total_packet_size * self.__packet_rate)
+        bandwidth = bandwidth / 1000  # in kbps
         return round(bandwidth, 1)
-
-    def get_voice_payload_size(self) -> float:
-        """
-        :return: voice payload size in bits as float
-        """
-        return self.__voice_payload_size
 
     def get_bandwidth(self) -> float:
         """
@@ -71,20 +56,8 @@ class VoIP_Calculator(object):
         """
         return self.__bandwidth
 
-    def get_bandwidth_as_string(self) -> str:
-        """
-        :return: bandwidth in kbps as str
-        """
-        return str(self.__bandwidth)
-
     def get_pps(self) -> float:
         """
         :return: packet rate in pps as float
         """
         return self.__packet_rate
-
-    def get_pps_as_string(self):
-        """
-        :return: packet rate in pps as string
-        """
-        return str(self.__packet_rate)

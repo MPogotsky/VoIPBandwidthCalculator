@@ -38,15 +38,15 @@ class ComponentManager(object):
 
     def __on_change(self):
         codec_name = str(self.parameters.combo_box_payload.currentText())
-        frame_size = self.parameters.input_box_for_ms.text()
+        voice_payload_size = self.parameters.input_box_for_ms.text()
         frames = self.parameters.input_box_for_frames.text()
 
-        if frame_size:
-            if not self.__check_input(frame_size):
+        if voice_payload_size:
+            if not self.__check_input(voice_payload_size):
                 self.parameters.input_box_for_ms.setText(str(""))
                 return
-            frame_size = int(frame_size)
-            codec = Codec(codec_name, sample_interval=frame_size)
+            voice_payload_size = int(voice_payload_size)
+            codec = Codec(codec_name, voice_payload_size=voice_payload_size)
             self.parameters.input_box_for_frames.setText(str(codec.frame_number))
         elif frames:
             if not self.__check_input(frames):
@@ -54,10 +54,10 @@ class ComponentManager(object):
                 return
             frames = int(frames)
             codec = Codec(codec_name, frames=frames)
-            frame_size = codec.frame_size
-            if not str(frame_size).startswith("0."):
-                frame_size = int(frame_size)
-            self.parameters.input_box_for_ms.setText(str(frame_size))
+            voice_payload_size = codec.voice_payload_size
+            if not str(voice_payload_size).startswith("0."):
+                voice_payload_size = int(voice_payload_size)
+            self.parameters.input_box_for_ms.setText(str(voice_payload_size))
         else:
             QtWidgets.QMessageBox.information(self.__Window,
                                               "Lack of data",
@@ -98,9 +98,9 @@ class ComponentManager(object):
             codec,
             channels)
 
-        self.results.output_for_bandwidth.setText(self.calculator.get_bandwidth_as_string())
+        self.results.output_for_bandwidth.setText(str(self.calculator.get_bandwidth()))
         self.results.output_for_bandwidth.setAlignment(QtCore.Qt.AlignRight)
-        self.results.output_for_packet_rate.setText(self.calculator.get_pps_as_string())
+        self.results.output_for_packet_rate.setText(str(self.calculator.get_pps()))
         self.results.output_for_packet_rate.setAlignment(QtCore.Qt.AlignRight)
 
     def __set_IP_version(self):
@@ -110,7 +110,7 @@ class ComponentManager(object):
     def __on_click(self):
         self.calculator.calculate(
             Header(["RTP", "UDP"]),
-            Codec("G.711 64kbps", sample_interval=20),
+            Codec("G.711 64kbps", voice_payload_size=20),
             int(self.parameters.input_box_for_channels.text()))
 
         self.results.output_for_bandwidth.setText(self.calculator.get_bandwidth_as_string())

@@ -2,24 +2,24 @@ from .CodecSets import ITU_T_and_IETF_Defined_Codec_Interval_Standards
 
 
 class Codec:
-    def __init__(self, name: str, sample_interval: float = None, frames: int = None):
+    def __init__(self, name: str, voice_payload_size: float = None, frames: int = None):
         """
         Class that specifies and calculates codec related parameters.
         :param name: codec name with bit rate
-        :param sample_interval: codec sampling interval
+        :param voice payload size: length of voice chunk
         :param frames: number of frames in one packet
         """
 
         self.name = name
         self.bit_rate = self.__get_default_bitrate()
-        if sample_interval is None and frames is None:
-            raise Exception("Specify codecs sample interval or number of frames")
+        if voice_payload_size is None and frames is None:
+            raise Exception("Specify voice payload size or number of frames")
 
-        if sample_interval is None:
+        if voice_payload_size is None:
             self.frame_number = frames
-            self.frame_size = self.__calculate_codec_sample_interval()
+            self.voice_payload_size = self.__calculate_voice_payload_size()
         else:
-            self.frame_size = sample_interval
+            self.voice_payload_size = voice_payload_size
             self.frame_number = self.__calculate_number_of_frames()
 
     def __get_default_bitrate(self) -> int:
@@ -34,13 +34,13 @@ class Codec:
         """
         for codec_family, standard_data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
             if codec_family in self.name:
-                return int(self.frame_size / standard_data[1])
+                return int(self.voice_payload_size / standard_data[1])
 
-    def __calculate_codec_sample_interval(self) -> float:
+    def __calculate_voice_payload_size(self) -> float:
         """
-        Count codec sample interval
-        :return: codec sample interval in ms
+        Get voice payload size that represents the number of voice that
+        going to be transmitted via network in one packet
+        :return: voice payload size in bits
         """
-        for codec_family, standard_data in ITU_T_and_IETF_Defined_Codec_Interval_Standards.items():
-            if codec_family in self.name:
-                return float(self.frame_number * standard_data[1])
+        voice_payload_size = (self.bit_rate * 1000) * (self.voice_payload_size * 10 ** -3)
+        return round(voice_payload_size, 1)

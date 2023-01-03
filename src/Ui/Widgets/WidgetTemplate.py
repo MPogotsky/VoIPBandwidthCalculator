@@ -10,7 +10,3 @@ class WidgetTemplate(Ui_Font, object):
     def setup(self, name: str, dimensions: QtCore.QSize):
         """Perform ui_template object setup"""
         pass
-
-    def get_font(self):
-        """Get standard font"""
-        return self.font

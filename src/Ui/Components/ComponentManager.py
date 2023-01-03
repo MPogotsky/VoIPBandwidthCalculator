@@ -3,6 +3,7 @@ from PyQt5 import QtCore, QtWidgets
 from src.Ui.Components.Parameters import Parameters
 from src.Ui.Components.Results import Results
 from src.Ui.Components.InputChecks import InputChecks
+from src.Ui.Components.Menu import Menu
 
 from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
 from src.VoIP_Calculator.Header import Header
@@ -15,6 +16,7 @@ class ComponentManager(object):
                  central_widget: QtWidgets.QWidget,
                  calculator: VoIP_Calculator):
         self.__Window = MainWindow
+        self.menubar = Menu(self.__Window)
         self.calculator = calculator
         self.validator = InputChecks(self.__Window)
         self.parameters = Parameters(self.__Window, central_widget)

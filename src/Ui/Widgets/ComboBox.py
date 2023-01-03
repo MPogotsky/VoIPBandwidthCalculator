@@ -16,7 +16,7 @@ class Ui_ComboBox(WidgetTemplate):
         self.combo_box = QtWidgets.QComboBox(self._widget)
         self.combo_box.setMinimumSize(dimensions)
         self.combo_box.setObjectName(name)
-        self.combo_box.setFont(self.get_font())
+        self.combo_box.setFont(self.font)
 
         self.__fill_with_items()
 

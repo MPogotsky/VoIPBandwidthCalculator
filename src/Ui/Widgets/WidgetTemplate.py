@@ -2,10 +2,10 @@ from PyQt5 import QtCore, QtWidgets
 from .Font import Ui_Font
 
 
-class WidgetTemplate(object):
+class WidgetTemplate(Ui_Font, object):
     def __init__(self, widget: QtWidgets):
+        super().__init__()
         self._widget = widget
-        pass
 
     def setup(self, name: str, dimensions: QtCore.QSize):
         """Perform ui_template object setup"""
@@ -13,6 +13,4 @@ class WidgetTemplate(object):
 
     def get_font(self):
         """Get standard font"""
-        ui_font = Ui_Font()
-        font = ui_font.setup()
-        return font
+        return self.font

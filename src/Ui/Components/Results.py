@@ -30,19 +30,19 @@ class Results(object):
         Label = Ui_Label(bandwidth_horizontal.get_widget())
         OutputBox = Ui_OutputBox(bandwidth_horizontal.get_widget())
 
-        bandwidth_horizontal._layout.setAlignment(QtCore.Qt.AlignLeft)
-        bandwidth_horizontal._layout.addStretch(1)
+        bandwidth_horizontal.get_layout().setAlignment(QtCore.Qt.AlignLeft)
+        bandwidth_horizontal.get_layout().addStretch(1)
 
         self.label_5 = Label.setup("label_5", QtCore.QSize(100, 31))
-        bandwidth_horizontal._layout.addWidget(self.label_5)
-        bandwidth_horizontal._layout.addSpacing(5)
+        bandwidth_horizontal.get_layout().addWidget(self.label_5)
+        bandwidth_horizontal.get_layout().addSpacing(5)
 
         self.output_for_bandwidth = OutputBox.setup("OutForBandwidth", QtCore.QSize(100, 31))
-        bandwidth_horizontal._layout.setAlignment(QtCore.Qt.AlignLeft)
-        bandwidth_horizontal._layout.addWidget(self.output_for_bandwidth)
+        bandwidth_horizontal.get_layout().setAlignment(QtCore.Qt.AlignLeft)
+        bandwidth_horizontal.get_layout().addWidget(self.output_for_bandwidth)
 
         self.label_6 = Label.setup("label_6", QtCore.QSize(60, 31))
-        bandwidth_horizontal._layout.addWidget(self.label_6)
+        bandwidth_horizontal.get_layout().addWidget(self.label_6)
 
     def __setup_packet_rate(self):
         packet_rate_horizontal = Ui_HorizontalLayout(self.__group_box,
@@ -52,18 +52,18 @@ class Results(object):
         Label = Ui_Label(packet_rate_horizontal.get_widget())
         OutputBox = Ui_OutputBox(packet_rate_horizontal.get_widget())
 
-        packet_rate_horizontal._layout.setAlignment(QtCore.Qt.AlignLeft)
-        packet_rate_horizontal._layout.addStretch(1)
+        packet_rate_horizontal.get_layout().setAlignment(QtCore.Qt.AlignLeft)
+        packet_rate_horizontal.get_layout().addStretch(1)
 
         self.label_7 = Label.setup("label_7", QtCore.QSize(120, 31))
-        packet_rate_horizontal._layout.addWidget(self.label_7)
-        packet_rate_horizontal._layout.addSpacing(5)
+        packet_rate_horizontal.get_layout().addWidget(self.label_7)
+        packet_rate_horizontal.get_layout().addSpacing(5)
 
         self.output_for_packet_rate = OutputBox.setup("OutForPPS", QtCore.QSize(100, 31))
-        packet_rate_horizontal._layout.addWidget(self.output_for_packet_rate)
+        packet_rate_horizontal.get_layout().addWidget(self.output_for_packet_rate)
 
         self.label_8 = Label.setup("label_8", QtCore.QSize(60, 31))
-        packet_rate_horizontal._layout.addWidget(self.label_8)
+        packet_rate_horizontal.get_layout().addWidget(self.label_8)
 
     def __retranslate_Ui(self):
         translate = QtCore.QCoreApplication.translate

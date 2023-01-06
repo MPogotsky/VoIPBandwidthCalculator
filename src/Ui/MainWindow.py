@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtWidgets
 
 from src.Ui.Components.ComponentManager import ComponentManager
 
-from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
+from src.VoIP_Calculator.CalculatorVoIP import CalculatorVoIP
 
 
 class Ui_MainWindow(object):
@@ -17,7 +17,7 @@ class Ui_MainWindow(object):
 
         MainWindow.setCentralWidget(central_widget)
 
-        calculator = VoIP_Calculator()
+        calculator = CalculatorVoIP()
 
         ComponentManager(MainWindow, central_widget, calculator)
 

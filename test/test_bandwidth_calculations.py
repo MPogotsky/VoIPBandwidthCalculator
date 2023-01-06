@@ -1,5 +1,5 @@
 import pytest
-from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
+from src.VoIP_Calculator.CalculatorVoIP import CalculatorVoIP
 from src.VoIP_Calculator.Codec import Codec
 from src.VoIP_Calculator.Header import Header
 
@@ -10,7 +10,7 @@ def test_voip_calculator_bandwidth_calculations_for_RTP_protocol() -> None:
     for several codecs with "RTP" protocol
     and one some sample interval.
     """
-    voip_calculator = VoIP_Calculator()
+    voip_calculator = CalculatorVoIP()
     headers = Header(["RTP"])
 
     set_of_parameters = {
@@ -31,7 +31,7 @@ def test_voip_calculator_bandwidth_calculations_for_UDP_protocol() -> None:
     for several codecs with additional headers ("RTP+"UDP")
     and one some sample interval.
     """
-    voip_calculator = VoIP_Calculator()
+    voip_calculator = CalculatorVoIP()
     headers = Header(["RTP", "UDP"])
 
     set_of_parameters = {
@@ -53,7 +53,7 @@ def test_voip_calculator_for_sets_of_protocols() -> None:
     rate for several codecs, protocol set and frames.
     """
 
-    voip_calculator = VoIP_Calculator()
+    voip_calculator = CalculatorVoIP()
 
     set_of_parameters = {
         (Header(["RTP", "UDP", "IPv4", "ethernet 802.3"]),

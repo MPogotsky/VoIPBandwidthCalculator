@@ -2,7 +2,7 @@ from .Codec import Codec
 from .Header import Header
 
 
-class VoIP_Calculator(object):
+class CalculatorVoIP(object):
     def __init__(self):
         self.__header = None
         self.__codec = None

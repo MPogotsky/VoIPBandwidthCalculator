@@ -5,7 +5,7 @@ from src.Ui.Components.Results import Results
 from src.Ui.Components.InputChecks import InputChecks
 from src.Ui.Components.Menu import Menu
 
-from src.VoIP_Calculator.VoIP_Calculator import VoIP_Calculator
+from src.VoIP_Calculator.CalculatorVoIP import CalculatorVoIP
 from src.VoIP_Calculator.Header import Header
 from src.VoIP_Calculator.Codec import Codec
 
@@ -14,7 +14,7 @@ class ComponentManager(object):
     def __init__(self,
                  MainWindow: QtWidgets.QMainWindow,
                  central_widget: QtWidgets.QWidget,
-                 calculator: VoIP_Calculator):
+                 calculator: CalculatorVoIP):
         self.__Window = MainWindow
         self.menubar = Menu(self.__Window)
         self.calculator = calculator

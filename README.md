@@ -66,10 +66,10 @@ a message in the form of a window that describes what is wrong. Example windows 
 messages can be seen below:
 
 
-![VoIP Calculator main window](dependency/ReadmeImages/Warning_1.png "Figure_2")
-![VoIP Calculator main window](dependency/ReadmeImages/Warning_2.png "Figure_3")
-![VoIP Calculator main window](dependency/ReadmeImages/Warning_3.png "Figure_4")
+![Warning_1](dependency/ReadmeImages/Warning_1.png "Figure_2")
+![Warning_2](dependency/ReadmeImages/Warning_2.png "Figure_3")
+![Warning_3](dependency/ReadmeImages/Warning_3.png "Figure_4")
 
 Components layout in application sections:
 
-![VoIP Calculator main window](dependency/ReadmeImages/Layouts.png "Figure_5")
+![Layouts](dependency/ReadmeImages/Layouts.png "Figure_5")

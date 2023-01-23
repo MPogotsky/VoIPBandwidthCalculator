@@ -6,7 +6,6 @@ from src.Ui.MainWindow import Ui_MainWindow
 basedir = os.path.dirname(__file__)
 
 if __name__ == "__main__":
-    os.environ["QT_AUTO_SCREEN_SCALE_FACTOR"] = "1"
     app = QtWidgets.QApplication(sys.argv)
     basedir = os.path.dirname(__file__)
     print(os.path.join(basedir, "dependency", 'pwr.ico'))

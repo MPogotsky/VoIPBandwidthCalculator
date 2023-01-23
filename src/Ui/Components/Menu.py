@@ -1,4 +1,5 @@
 from PyQt5 import QtWidgets
+from PyQt5 import QtCore
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QMenuBar, QMenu, QAction, QStyle, QApplication
 
@@ -10,18 +11,21 @@ class Menu(object):
         self.__Window = Window
         menuBar = QMenuBar(self.__Window)
 
-        self.my_menu = QMenu("Menu", self.__Window)
-        menuBar.addMenu(self.my_menu)
+        menu_icon = QIcon(QApplication.style().standardIcon(QStyle.SP_MessageBoxInformation))
+        self.label = menuBar.addMenu(menu_icon, "")
+        self.label.setEnabled(False)
 
-        icon = QIcon(QApplication.style().standardIcon(QStyle.SP_CommandLink))
+        self.help_menu = menuBar.addMenu("Help")
 
-        doc = QAction(icon, "Documentation and source code", self.__Window)
+        sub_menu_icon = QIcon(QApplication.style().standardIcon(QStyle.SP_CommandLink))
+
+        doc = QAction(sub_menu_icon, "Documentation and source code", self.__Window)
         doc.triggered.connect(self.__show_documentation)
-        self.my_menu.addAction(doc)
+        self.help_menu.addAction(doc)
 
-        authors = QAction(icon, "Author", self.__Window)
+        authors = QAction(sub_menu_icon, "Author", self.__Window)
         authors.triggered.connect(self.__show_author)
-        self.my_menu.addAction(authors)
+        self.help_menu.addAction(authors)
 
         self.__Window.setMenuBar(menuBar)
 

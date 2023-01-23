@@ -28,7 +28,7 @@ Standard | Codec | Bitrate | Frame Size |
 :------------: | :------------: | :------------: | :------------: |
 ITU-T     | G.711   | 64kbps    | 10ms  |
 ITU-T     | G.726   | 16kbps    | 5ms   |
-ITU-T     | G.728   | 12.8kbps  | 5ms |
+ITU-T     | G.728   | 16kbps    | 2.5ms |
 ITU-T     | G.729   | 8kbps     | 10ms |
 ITU-T     | G.723.1 | 5.3kbps   | 30ms  |
 IETF      | iLBC    | 15.2kbps  | 20ms |
@@ -59,13 +59,24 @@ Ethernet 802.3  | 38 byte|
 VoIP calculator is a relatively simple application. It consists of one windows
 divided into two sections, the first section is for setting parameters and the other one
 is used to demonstrate the results.
-![VoIP Calculator main window](dependency/ReadmeImages/MainWindow.PNG "Figure_1")
+![VoIP Calculator main window](dependency/ReadmeImages/MainWindow.png "Figure_1")
 
-Checkout other figures below, to get used to VoIP Calculator UI.
+In a situation where the entered value is not correct, the user gets
+a message in the form of a window that describes what is wrong. Example windows with
+messages can be seen below:
 
-1. Selection of the codec and its parameters
-![VoIP Calculator codecs](dependency/ReadmeImages/CodecWindow.png "Figure_2")
-2. Protocol stack selection with IP version selection
-![VoIP Calculator protocols for IP](dependency/ReadmeImages/ProtocolWindow.png)
-3. Number of channels
-![VoIP Calculator number of channels](dependency/ReadmeImages/CahnnelWindow.png)
+<p align="center">
+  <img src="dependency/ReadmeImages/Warning_1.png">
+</p>
+
+<p align="center">
+  <img src="dependency/ReadmeImages/Warning_2.png">
+</p>
+
+<p align="center">
+  <img src="dependency/ReadmeImages/Warning_3.png">
+</p>
+
+Components layout in application sections:
+
+![VoIP Calculator main window](dependency/ReadmeImages/Layouts.png "Figure_1")

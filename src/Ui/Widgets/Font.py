@@ -13,5 +13,5 @@ class Ui_Font():
     def __init__(self):
         self.font = QtGui.QFont()
         self.font.setFamily("Arial")
-        self.font.setPointSize(18)
+        self.font.setPointSize(15)
         pass
